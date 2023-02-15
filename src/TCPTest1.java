@@ -1,4 +1,3 @@
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -84,7 +83,7 @@ public class TCPTest1 {
 //        System.out.println(str);
         byteArrayOutputStream.write(buffer,0,len);//就收到的数据全部都拼接起来
       }
-      System.out.println(byteArrayOutputStream.toString());
+      System.out.println(byteArrayOutputStream.toString());//只需要这里输出一下就好了
       System.out.println("\n数据接收完毕");
     } catch (IOException e) {
       e.printStackTrace();
