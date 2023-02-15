@@ -1,3 +1,5 @@
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -73,13 +75,16 @@ public class TCPTest1 {
 
       //接收数据
       inputStream = socket.getInputStream();
-      byte[] buffer = new byte[1024];
+      byte[] buffer = new byte[5];
       int len;
+      //为了防止文字被切断出现乱码,内部维护一个byte数组，其实就是write到了内存
+      ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
       while ((len = inputStream.read(buffer)) != -1){
-        String str = new String(buffer,0,len);
-        System.out.println(str);
+//        String str = new String(buffer,0,len);
+//        System.out.println(str);
+        byteArrayOutputStream.write(buffer,0,len);//就收到的数据全部都拼接起来
       }
-
+      System.out.println(byteArrayOutputStream.toString());
       System.out.println("\n数据接收完毕");
     } catch (IOException e) {
       e.printStackTrace();
